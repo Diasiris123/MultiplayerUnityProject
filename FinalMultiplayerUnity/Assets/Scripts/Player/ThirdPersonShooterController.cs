@@ -1,0 +1,72 @@
+using System;
+using Cinemachine;
+using StarterAssets;
+using UnityEngine;
+using UnityEngine.InputSystem;
+
+public class ThirdPersonShooterController : MonoBehaviour
+{
+    [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
+    [SerializeField] private StarterAssetsInputs starterAssetsInputs;
+    [SerializeField] private ThirdPersonController thirdPersonController;
+    [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
+
+    [Space(10)]
+    [SerializeField] private float normalSensitivity;
+    [SerializeField] private float aimSensitivity;
+
+    private Camera _mainCam;
+    [SerializeField] private Transform aimDebugTransform;
+    private Vector2 _screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
+    private Vector3 _mouseToWorldPos = Vector3.zero;
+
+    private void Start()
+    {
+        _mainCam = Camera.main;
+    }
+
+    private void Update()
+    {
+        SwitchToAimCamera();
+
+        AimAtScreenCenter();
+        
+
+    }
+
+    private void SwitchToAimCamera()
+    {
+        if (starterAssetsInputs.aim)
+        {
+            aimVirtualCamera.gameObject.SetActive(true);
+            thirdPersonController.SetMouseSensitivity(aimSensitivity);
+            thirdPersonController.SetRotateOnMove(false);
+
+            Vector3 aimTarget = _mouseToWorldPos;
+            aimTarget.y = transform.position.y;
+            Vector3 aimDir = (aimTarget - transform.position).normalized;
+
+            transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * 20f);
+        }
+        else
+        {
+            aimVirtualCamera.gameObject.SetActive(false);
+            thirdPersonController.SetRotateOnMove(true);
+            thirdPersonController.SetMouseSensitivity(normalSensitivity);
+        }
+    }
+
+    private void AimAtScreenCenter()
+    {
+        Ray ray = _mainCam.ScreenPointToRay(_screenCenterPoint);
+        if (Physics.Raycast(ray, out RaycastHit hit, 999f, aimColliderLayerMask))
+        {
+            aimDebugTransform.position = hit.point;
+            _mouseToWorldPos = hit.point;
+        }
+    }
+    
+    
+    
+}
+    
