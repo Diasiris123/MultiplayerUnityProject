@@ -1,5 +1,5 @@
 using System;
-using Cinemachine;
+using Unity.Cinemachine;
 using Photon.Pun;
 using Photon.Realtime;
 using StarterAssets;
@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
 {
     [SerializeField] public GameObject cameraFollowTarget;
-    [SerializeField] public CinemachineVirtualCamera aimVirtualCamera;
+    [SerializeField] public CinemachineCamera aimVirtualCamera;
     [SerializeField] private StarterAssetsInputs starterAssetsInputs;
     [SerializeField] private ThirdPersonController thirdPersonController;
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();

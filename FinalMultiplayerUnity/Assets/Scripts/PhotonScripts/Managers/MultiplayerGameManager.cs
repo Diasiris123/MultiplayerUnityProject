@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Cinemachine;
+using Unity.Cinemachine;
 using Photon.Pun;
 using StarterAssets;
 using UnityEngine;
@@ -16,8 +16,8 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     [Header("Setup")]
     [SerializeField] private SpawnPoint[] spawnPoints;
 
-    [SerializeField] private CinemachineVirtualCamera cinemachineCamMain;
-    [SerializeField] private CinemachineVirtualCamera cinemachineCamAim;
+    [SerializeField] private CinemachineCamera cinemachineCamMain;
+    [SerializeField] private CinemachineCamera cinemachineCamAim;
     [SerializeField] private GameObject cameraFollowTarget;
 
     private ThirdPersonController _myThirdPersonController;
