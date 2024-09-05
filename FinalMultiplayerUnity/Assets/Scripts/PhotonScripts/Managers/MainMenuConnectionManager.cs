@@ -7,6 +7,7 @@ namespace PhotonScripts.Managers
     public class MainMenuConnectionManager : MonoBehaviourPunCallbacks
     {
         private const string GAME_SCENE_NAME = "SampleScene";
+        private const string LOBBY_NAME = "MyLobby";
         
         public void ConnectToPhoton()
         {
@@ -54,7 +55,7 @@ namespace PhotonScripts.Managers
             Debug.Log("photon connection successful");
             base.OnConnectedToMaster();
 
-            PhotonNetwork.JoinLobby();
+            PhotonNetwork.JoinLobby(new TypedLobby(LOBBY_NAME, LobbyType.Default));
         }
     
         public override void OnDisconnected(DisconnectCause cause)

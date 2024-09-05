@@ -1397,11 +1397,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0b2b353c61f15e439225f5343ce6e40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraFollowTarget: {fileID: 2942006034258946698}
   aimVirtualCamera: {fileID: 0}
   starterAssetsInputs: {fileID: 175642304347842919}
   thirdPersonController: {fileID: 3365362129812230948}
+  aimColliderLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   normalSensitivity: 1
   aimSensitivity: 0.5
+  aimDebugTransform: {fileID: 0}
 --- !u!114 &5140615501765146385
 MonoBehaviour:
   m_ObjectHideFlags: 0

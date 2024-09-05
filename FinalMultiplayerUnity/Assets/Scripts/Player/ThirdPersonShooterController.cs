@@ -1,12 +1,15 @@
 using System;
 using Cinemachine;
+using Photon.Pun;
+using Photon.Realtime;
 using StarterAssets;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class ThirdPersonShooterController : MonoBehaviour
+public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private CinemachineVirtualCamera aimVirtualCamera;
+    [SerializeField] public GameObject cameraFollowTarget;
+    [SerializeField] public CinemachineVirtualCamera aimVirtualCamera;
     [SerializeField] private StarterAssetsInputs starterAssetsInputs;
     [SerializeField] private ThirdPersonController thirdPersonController;
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
@@ -19,23 +22,29 @@ public class ThirdPersonShooterController : MonoBehaviour
     [SerializeField] private Transform aimDebugTransform;
     private Vector2 _screenCenterPoint = new Vector2(Screen.width / 2f, Screen.height / 2f);
     private Vector3 _mouseToWorldPos = Vector3.zero;
-
+    
+    
     private void Start()
     {
         _mainCam = Camera.main;
+        
+        
     }
 
     private void Update()
     {
-        SwitchToAimCamera();
-
-        AimAtScreenCenter();
+        if (!photonView.IsMine)
+            return;
         
-
+       // SwitchToAimCamera();
+        AimAtScreenCenter();
     }
 
     private void SwitchToAimCamera()
     {
+        if (!photonView.IsMine)
+            return;
+        
         if (starterAssetsInputs.aim)
         {
             aimVirtualCamera.gameObject.SetActive(true);
@@ -58,10 +67,13 @@ public class ThirdPersonShooterController : MonoBehaviour
 
     private void AimAtScreenCenter()
     {
+        if (!photonView.IsMine)
+            return;
+        
         Ray ray = _mainCam.ScreenPointToRay(_screenCenterPoint);
         if (Physics.Raycast(ray, out RaycastHit hit, 999f, aimColliderLayerMask))
         {
-            aimDebugTransform.position = hit.point;
+            //aimDebugTransform.position = hit.point;
             _mouseToWorldPos = hit.point;
         }
     }

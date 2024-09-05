@@ -1,4 +1,6 @@
-﻿ using UnityEngine;
+﻿ using Photon.Pun;
+ using Photon.Realtime;
+ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -12,7 +14,7 @@ namespace StarterAssets
 #if ENABLE_INPUT_SYSTEM 
     [RequireComponent(typeof(PlayerInput))]
 #endif
-    public class ThirdPersonController : MonoBehaviour
+    public class ThirdPersonController : MonoBehaviourPunCallbacks
     {
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
@@ -127,6 +129,9 @@ namespace StarterAssets
 
         private void Awake()
         {
+            if(!photonView.IsMine)
+                return;
+            
             // get a reference to our main camera
             if (_mainCamera == null)
             {
@@ -136,6 +141,9 @@ namespace StarterAssets
 
         private void Start()
         {
+            if(!photonView.IsMine)
+                return;
+            
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
             
             _hasAnimator = TryGetComponent(out _animator);
@@ -156,6 +164,9 @@ namespace StarterAssets
 
         private void Update()
         {
+            if(!photonView.IsMine)
+                return;
+            
             _hasAnimator = TryGetComponent(out _animator);
 
             JumpAndGravity();
@@ -165,6 +176,9 @@ namespace StarterAssets
 
         private void LateUpdate()
         {
+            if(!photonView.IsMine)
+                return;
+            
             CameraRotation();
         }
 
@@ -374,6 +388,9 @@ namespace StarterAssets
 
         private void OnFootstep(AnimationEvent animationEvent)
         {
+            if(!photonView.IsMine)
+                return;
+            
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 if (FootstepAudioClips.Length > 0)
@@ -386,6 +403,9 @@ namespace StarterAssets
 
         private void OnLand(AnimationEvent animationEvent)
         {
+            if(!photonView.IsMine)
+                return;
+            
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
