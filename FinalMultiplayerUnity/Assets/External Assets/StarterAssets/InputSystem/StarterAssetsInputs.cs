@@ -15,6 +15,7 @@ namespace StarterAssets
 		public bool jump;
 		public bool sprint;
 		public bool aim;
+		public bool shoot;
 
 		[Header("Movement Settings")]
 		public bool analogMovement;
@@ -72,6 +73,16 @@ namespace StarterAssets
 				Debug.Log("Aim input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
 			}
 		}
+		
+		public void OnShoot(InputValue value)
+		{
+			if (photonView.IsMine)
+			{
+				ShootInput(value.isPressed);
+				Debug.Log("Shoot input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
+			}
+		}
+		
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{
@@ -97,11 +108,17 @@ namespace StarterAssets
 		{
 			aim = newAimState;
 		}
-
+		public void ShootInput(bool newShootState)
+		{
+			shoot = newShootState;
+		}
+		
 		private void OnApplicationFocus(bool hasFocus)
 		{
 			SetCursorState(cursorLocked);
 		}
+		
+		
 
 		private void SetCursorState(bool newState)
 		{

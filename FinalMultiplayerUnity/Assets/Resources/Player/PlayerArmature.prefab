@@ -989,6 +989,37 @@ Transform:
   - {fileID: 8911246441210101503}
   m_Father: {fileID: 600037801232863778}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3542571272697598932
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6918796940088547764}
+  m_Layer: 8
+  m_Name: ProjectileSpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6918796940088547764
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3542571272697598932}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.235, z: 0.922}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5236646079932179022}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &3806456736926027388
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,6 +1320,7 @@ Transform:
   - {fileID: 4158861688540884626}
   - {fileID: 3137749292067519686}
   - {fileID: 2145017709074580292}
+  - {fileID: 6918796940088547764}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &7662405967499554193
@@ -1326,14 +1358,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraFollowTarget: {fileID: 2942006034258946698}
+  aimCamera: {fileID: 0}
   starterAssetsInputs: {fileID: 175642304347842919}
   thirdPersonController: {fileID: -1052054051969566967}
   aimColliderLayerMask:
     serializedVersion: 2
     m_Bits: 4294967295
   playerInput: {fileID: 4076549932472566764}
-  normalSensitivity: 0
-  aimSensitivity: 0
+  animator: {fileID: 7662405967499554193}
+  normalSensitivity: 1
+  aimSensitivity: 0.5
+  projectileSpawnPoint: {fileID: 6918796940088547764}
   aimDebugTransform: {fileID: 0}
 --- !u!114 &-1052054051969566967
 MonoBehaviour:
@@ -1429,6 +1464,7 @@ MonoBehaviour:
   jump: 0
   sprint: 0
   aim: 0
+  shoot: 0
   analogMovement: 0
   cursorLocked: 1
   cursorInputForLook: 1
@@ -1603,6 +1639,8 @@ MonoBehaviour:
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
+  - SynchronizeType: 1
+    LayerIndex: 1
 --- !u!1 &5399681587262623532
 GameObject:
   m_ObjectHideFlags: 0

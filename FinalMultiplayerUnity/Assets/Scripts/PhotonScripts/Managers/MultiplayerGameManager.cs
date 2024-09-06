@@ -23,7 +23,7 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     [SerializeField] private BoostSpawnPoint[] boostSpawners;
 
     [SerializeField] private CinemachineCamera cinemachineCamMain;
-    //[SerializeField] private CinemachineCamera cinemachineCamAim;
+    [SerializeField] private CinemachineCamera cinemachineCamAim;
     [SerializeField] private GameObject cameraFollowTarget;
     
     private ThirdPersonShooterController _myShooterController;
@@ -34,6 +34,8 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 
     private void Start()
     {
+        
+        
         NotifyReadyToMasterClient();
         if (PhotonNetwork.IsMasterClient)
         {
@@ -56,14 +58,14 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         if (_playerObject.GetPhotonView().IsMine)
         {
             _playerObject.transform.LookAt(Vector3.zero);
-
-            // Set local playerController and disable until game starts
+            
 
             _myShooterController = _playerObject.GetComponent<ThirdPersonShooterController>();
             cameraFollowTarget = _myShooterController.cameraFollowTarget;
 
             cinemachineCamMain.Follow = cameraFollowTarget.transform;
-            //cinemachineCamAim.Follow = cameraFollowTarget.transform;
+            cinemachineCamAim.Follow = cameraFollowTarget.transform;
+            _myShooterController.aimCamera = cinemachineCamAim;
         }
     }
 
