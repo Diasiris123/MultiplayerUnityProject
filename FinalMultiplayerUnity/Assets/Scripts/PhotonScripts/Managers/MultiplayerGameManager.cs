@@ -95,7 +95,7 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         if (boost != null)
         {
             boost.Take();
-            GameObject item = PhotonNetwork.Instantiate(BOOST_PREFAP_NAME, boost.transform.position, boost.transform.rotation);
+            GameObject item = PhotonNetwork.InstantiateRoomObject(BOOST_PREFAP_NAME, boost.transform.position, boost.transform.rotation);
             item.GetComponent<Boost>().spawner = boost;
         }
     }
