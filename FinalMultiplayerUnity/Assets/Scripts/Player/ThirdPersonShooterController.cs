@@ -61,7 +61,7 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
             aimCamera.gameObject.SetActive(true);
             thirdPersonController.SetMouseSensitivity(aimSensitivity);
             thirdPersonController.SetRotateOnMove(false);
-            animator.SetLayerWeight(ANIMATOR_SHOOTING_LAYER, Mathf.Lerp(animator.GetLayerWeight(ANIMATOR_SHOOTING_LAYER),1f, Time.deltaTime * 20f));
+           // animator.SetLayerWeight(ANIMATOR_SHOOTING_LAYER, Mathf.Lerp(animator.GetLayerWeight(ANIMATOR_SHOOTING_LAYER),1f, Time.deltaTime * 20f));
 
             Vector3 aimTarget = _mouseToWorldPos;
             aimTarget.y = transform.position.y;
@@ -75,7 +75,7 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
             aimCamera.gameObject.SetActive(false);
             thirdPersonController.SetRotateOnMove(true);
             thirdPersonController.SetMouseSensitivity(normalSensitivity);
-            animator.SetLayerWeight(ANIMATOR_SHOOTING_LAYER, Mathf.Lerp(animator.GetLayerWeight(ANIMATOR_SHOOTING_LAYER),0f, Time.deltaTime * 20f));
+            //animator.SetLayerWeight(ANIMATOR_SHOOTING_LAYER, Mathf.Lerp(animator.GetLayerWeight(ANIMATOR_SHOOTING_LAYER),0f, Time.deltaTime * 20f));
         }
     }
 
