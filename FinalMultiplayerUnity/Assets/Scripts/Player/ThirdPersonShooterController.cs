@@ -9,10 +9,11 @@ using UnityEngine.InputSystem;
 public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
 {
     [SerializeField] public GameObject cameraFollowTarget;
-    [SerializeField] public CinemachineCamera aimVirtualCamera;
+    //[SerializeField] public CinemachineCamera aimVirtualCamera;
     [SerializeField] private StarterAssetsInputs starterAssetsInputs;
     [SerializeField] private ThirdPersonController thirdPersonController;
     [SerializeField] private LayerMask aimColliderLayerMask = new LayerMask();
+    [SerializeField] private PlayerInput playerInput;
 
     [Space(10)]
     [SerializeField] private float normalSensitivity;
@@ -28,7 +29,8 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
     {
         _mainCam = Camera.main;
         
-        
+        if(photonView.IsMine)
+            playerInput.enabled = true;
     }
 
     private void Update()
@@ -40,7 +42,7 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
         AimAtScreenCenter();
     }
 
-    private void SwitchToAimCamera()
+    /*private void SwitchToAimCamera()
     {
         if (!photonView.IsMine)
             return;
@@ -63,7 +65,7 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
             thirdPersonController.SetRotateOnMove(true);
             thirdPersonController.SetMouseSensitivity(normalSensitivity);
         }
-    }
+    }*/
 
     private void AimAtScreenCenter()
     {

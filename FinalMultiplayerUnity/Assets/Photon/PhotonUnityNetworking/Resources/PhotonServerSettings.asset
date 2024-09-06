@@ -42,6 +42,7 @@ MonoBehaviour:
   - ClientIsReady
   - GameStarted
   - SetSpawnPoint
+  - ShootRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 0

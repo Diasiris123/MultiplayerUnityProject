@@ -17,10 +17,9 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     [SerializeField] private SpawnPoint[] spawnPoints;
 
     [SerializeField] private CinemachineCamera cinemachineCamMain;
-    [SerializeField] private CinemachineCamera cinemachineCamAim;
+    //[SerializeField] private CinemachineCamera cinemachineCamAim;
     [SerializeField] private GameObject cameraFollowTarget;
-
-    private ThirdPersonController _myThirdPersonController;
+    
     private ThirdPersonShooterController _myShooterController;
 
     private int _playersReady;
@@ -48,15 +47,12 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
             _playerObject.transform.LookAt(Vector3.zero);
 
             // Set local playerController and disable until game starts
-            _myThirdPersonController = _playerObject.GetComponent<ThirdPersonController>();
-            _myShooterController = _playerObject.GetComponent<ThirdPersonShooterController>();
 
-            var controller = _playerObject.GetComponent<ThirdPersonShooterController>();
-            cameraFollowTarget = controller.cameraFollowTarget;
-            controller.aimVirtualCamera = cinemachineCamAim;
+            _myShooterController = _playerObject.GetComponent<ThirdPersonShooterController>();
+            cameraFollowTarget = _myShooterController.cameraFollowTarget;
 
             cinemachineCamMain.Follow = cameraFollowTarget.transform;
-            cinemachineCamAim.Follow = cameraFollowTarget.transform;
+            //cinemachineCamAim.Follow = cameraFollowTarget.transform;
         }
     }
 
@@ -117,15 +113,7 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     private void GameStarted()
     {
         Debug.Log("Game started");
-        if (_playerObject != null && _playerObject.GetPhotonView().IsMine)
-        {
-            var controller = _playerObject.GetComponent<ThirdPersonShooterController>();
-            cameraFollowTarget = controller.cameraFollowTarget;
-            controller.aimVirtualCamera = cinemachineCamAim;
-
-            cinemachineCamMain.Follow = cameraFollowTarget.transform;
-            cinemachineCamAim.Follow = cameraFollowTarget.transform;
-        }
+        
     }
 
     #endregion

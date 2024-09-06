@@ -1,3 +1,5 @@
+using System;
+using Photon.Pun;
 using UnityEngine;
 #if ENABLE_INPUT_SYSTEM
 using UnityEngine.InputSystem;
@@ -5,7 +7,7 @@ using UnityEngine.InputSystem;
 
 namespace StarterAssets
 {
-	public class StarterAssetsInputs : MonoBehaviour
+	public class StarterAssetsInputs : MonoBehaviourPunCallbacks
 	{
 		[Header("Character Input Values")]
 		public Vector2 move;
@@ -21,36 +23,55 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
-#if ENABLE_INPUT_SYSTEM
+		private void Update()
+		{
+			Debug.Log("Input System " + photonView.IsMine);
+		}
+		
 		public void OnMove(InputValue value)
 		{
-			MoveInput(value.Get<Vector2>());
+			if (photonView.IsMine)
+			{
+				MoveInput(value.Get<Vector2>());
+				Debug.Log("Move input for local player: " + PhotonNetwork.NickName + " | Value: " + value.Get<Vector2>());
+			}
 		}
 
 		public void OnLook(InputValue value)
 		{
-			if(cursorInputForLook)
+			if (photonView.IsMine && cursorInputForLook)
 			{
 				LookInput(value.Get<Vector2>());
+				Debug.Log("Look input for local player: " + PhotonNetwork.NickName + " | Value: " + value.Get<Vector2>());
 			}
 		}
 
 		public void OnJump(InputValue value)
 		{
-			JumpInput(value.isPressed);
+			if (photonView.IsMine)
+			{
+				JumpInput(value.isPressed);
+				Debug.Log("Jump input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
+			}
 		}
 
 		public void OnSprint(InputValue value)
 		{
-			SprintInput(value.isPressed);
+			if (photonView.IsMine)
+			{
+				SprintInput(value.isPressed);
+				Debug.Log("Sprint input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
+			}
 		}
-		
+
 		public void OnAim(InputValue value)
 		{
-			AimInput(value.isPressed);
+			if (photonView.IsMine)
+			{
+				AimInput(value.isPressed);
+				Debug.Log("Aim input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
+			}
 		}
-#endif
-
 
 		public void MoveInput(Vector2 newMoveDirection)
 		{

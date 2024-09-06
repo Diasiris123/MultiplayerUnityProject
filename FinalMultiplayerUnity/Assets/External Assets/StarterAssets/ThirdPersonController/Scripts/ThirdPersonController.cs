@@ -141,6 +141,8 @@ namespace StarterAssets
 
         private void Start()
         {
+            
+            Debug.Log("photon isMine " + photonView.IsMine);
             if(!photonView.IsMine)
                 return;
             
@@ -176,8 +178,6 @@ namespace StarterAssets
 
         private void LateUpdate()
         {
-            if(!photonView.IsMine)
-                return;
             
             CameraRotation();
         }
@@ -193,6 +193,10 @@ namespace StarterAssets
 
         private void GroundedCheck()
         {
+            if (!photonView.IsMine)
+                return;
+            
+            
             // set sphere position, with offset
             Vector3 spherePosition = new Vector3(transform.position.x, transform.position.y - GroundedOffset,
                 transform.position.z);
@@ -208,6 +212,10 @@ namespace StarterAssets
 
         private void CameraRotation()
         {
+            if (!photonView.IsMine)
+                return;
+            
+            
             // if there is an input and camera position is not fixed
             if (_input.look.sqrMagnitude >= _threshold && !LockCameraPosition)
             {
@@ -229,6 +237,10 @@ namespace StarterAssets
 
         private void Move()
         {
+            if (!photonView.IsMine)
+                return;
+            
+            
             // set target speed based on move speed, sprint speed and if sprint is pressed
             float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
 
