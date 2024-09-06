@@ -5,16 +5,22 @@ using Photon.Pun;
 using StarterAssets;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Photon.Realtime;
+using System.Collections;
 
 public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 {
     private const string PLAYER_PREFAB = "Player/PlayerArmature";
+    private const string BOOST_PREFAP_NAME = "World/BoostPrefab";
 
     private const string ClientIsReady_RPC = nameof(ClientIsReady);
     private const string SetSpawnPoint_RPC = nameof(SetSpawnPoint);
+    private const string SetBoostSpawner_RPC = nameof(SetBoostSpawner);
+    private const string SetNextSpawnPoint_RPC = nameof(SetNextBoostSpawnPoint);
 
     [Header("Setup")]
     [SerializeField] private SpawnPoint[] spawnPoints;
+    [SerializeField] private BoostSpawnPoint[] boostSpawners;
 
     [SerializeField] private CinemachineCamera cinemachineCamMain;
     //[SerializeField] private CinemachineCamera cinemachineCamAim;
@@ -24,10 +30,15 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 
     private int _playersReady;
     private GameObject _playerObject;
+    private BoostSpawnPoint _nextBoostSpawnPoint;
 
     private void Start()
     {
         NotifyReadyToMasterClient();
+        if (PhotonNetwork.IsMasterClient)
+        {
+            StartCoroutine(nameof(WaitTenSecondsAndSpawnBoost));
+        }
     }
 
     #region Game Setup
@@ -77,6 +88,68 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         return availablePoints[rnd];
     }
 
+    private void SpawnBoost(BoostSpawnPoint boost)
+    {
+        if (boost != null)
+        {
+            boost.Take();
+            GameObject item = PhotonNetwork.Instantiate(BOOST_PREFAP_NAME, boost.transform.position, boost.transform.rotation);
+            item.GetComponent<Boost>().spawner = boost;
+        }
+    }
+
+    [PunRPC]
+    private void SetBoostSpawner(int boostSpawnID)
+    {
+        foreach (var boostSpawn in boostSpawners)
+        {
+            if (boostSpawn.Id == boostSpawnID)
+            {
+                SpawnBoost(boostSpawn);
+                break;
+            }
+        }
+    }
+
+    private BoostSpawnPoint GetRandomBoostSpawner()
+    {
+        List<BoostSpawnPoint> availableBoostSpawners = new();
+
+        foreach (var spawner in boostSpawners)
+        {
+            if (!spawner.IsTaken)
+            {
+                availableBoostSpawners.Add(spawner);
+            }
+        }
+
+        if (availableBoostSpawners.Count == 0)
+        {
+            Debug.Log("all spawners taken");
+            return null;
+        }
+
+        int randomBoostSpawnerIndex = Random.Range(0, availableBoostSpawners.Count);
+        return availableBoostSpawners[randomBoostSpawnerIndex];
+    }
+
+    private void SetNextBoostSpawnPoint()
+    {
+        _nextBoostSpawnPoint = GetRandomBoostSpawner();
+    }
+
+    private IEnumerator WaitTenSecondsAndSpawnBoost()
+    {
+        int spawnCount = 0;
+        for(; ; )
+        {
+            SpawnBoost(_nextBoostSpawnPoint);
+            SetNextBoostSpawnPoint();
+            spawnCount++;
+            yield return new WaitForSeconds(10f);
+        }
+    }
+
     #region RPCs
 
     [PunRPC]
@@ -117,6 +190,39 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     }
 
     #endregion
+
+    #endregion
+
+    #region New Master Client
+
+    [ContextMenu("Switch Master Client")]
+    public void ChangeMasterClient()
+    {
+        Player MasterClientCandidate = PhotonNetwork.LocalPlayer.GetNext();
+
+        bool success = PhotonNetwork.SetMasterClient(MasterClientCandidate);
+        Debug.Log($"New Master Setting secces is {success}");
+    }
+
+    public override void OnMasterClientSwitched(Player newMasterClient)
+    {
+        base.OnMasterClientSwitched(newMasterClient);
+        Debug.Log($"The new master client is {newMasterClient}");
+    }
+
+    #endregion
+
+    #region Disconnection
+
+    public void OnPlayerDisconnected(Player player)
+    {
+        Debug.Log("player has been disconnected");
+        if (player.IsMasterClient)
+        {
+            Debug.Log("player was the master client, changing master...");
+            ChangeMasterClient();
+        }
+    }
 
     #endregion
 }

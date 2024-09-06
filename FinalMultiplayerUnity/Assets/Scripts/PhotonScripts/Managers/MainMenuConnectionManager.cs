@@ -6,17 +6,15 @@ namespace PhotonScripts.Managers
 {
     public class MainMenuConnectionManager : MonoBehaviourPunCallbacks
     {
-        private const string GAME_SCENE_NAME = "SampleScene";
+        private const string GAME_SCENE_NAME = "SampleScenePlaceHolder";
         private const string LOBBY_NAME = "MyLobby";
-        
+
         public void ConnectToPhoton()
         {
             PhotonNetwork.NickName = ConnectionUIManager.Instance.playerNameIF.text;
             PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.AutomaticallySyncScene = true;
         }
-        
-        
         
         public void CreateRoom()
         {
