@@ -104,7 +104,7 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
         }
         else
         {
-            _mouseToWorldPos = ray.GetPoint(100f);
+            _mouseToWorldPos = ray.GetPoint(70f);
         }
     }
 

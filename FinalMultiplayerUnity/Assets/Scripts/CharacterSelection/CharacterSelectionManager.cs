@@ -28,6 +28,11 @@ namespace CharacterSelection
             }
         }
 
+        private void Update()
+        {
+            readyBtn.interactable = selectedCharacter != null;
+        }
+
         public void Ready()
         {
             isReady = true;
