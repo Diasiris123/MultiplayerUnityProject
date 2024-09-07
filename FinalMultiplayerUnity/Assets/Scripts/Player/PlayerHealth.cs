@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
         currentHealth = maxHealth;
         playerCamera = Camera.main.transform;
         
-        SavePlayerHP(currentHealth);
+        SavePlayerHP(photonView.ViewID,currentHealth);
 
 
         if (photonView.AmOwner)
@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
     public void ApplyDamage(float damage)
     {
             photonView.RPC(TAKE_DAMAGE_RPC,RpcTarget.All, damage,photonView.Owner.NickName);
-            SavePlayerHP(currentHealth);
+            SavePlayerHP(photonView.ViewID,currentHealth);
     }
     
     private void UpdateHealthBar()
@@ -63,14 +63,14 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
         
     }
 
-    private void SavePlayerHP(float currentHP)
+    private void SavePlayerHP(int playerId, float currentHP)
     {
-        Hashtable playerProperties = new Hashtable
+        Hashtable roomProperties = new Hashtable
         {
-            { "HP", currentHP } 
+            { "HP_" + playerId, currentHP } 
         };
         
-        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
+        PhotonNetwork.CurrentRoom.SetCustomProperties(roomProperties);
     }
     
     

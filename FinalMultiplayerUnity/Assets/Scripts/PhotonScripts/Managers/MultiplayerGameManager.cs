@@ -164,18 +164,15 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     
     public float GetPlayerHP(int playerID)
     {
-        if (PhotonNetwork.CurrentRoom.Players.TryGetValue(playerID, out Player player))
+        if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("HP_" + playerID, out object hp))
         {
-            if (player.CustomProperties.TryGetValue("HP", out object hp))
-            {
-                Debug.Log("Player HP: " + hp);
-                return (float)hp;
-
-            }
+            Debug.Log("Player HP: " + hp);
+            return (float)hp;
+            
         }
         else
         {
-            Debug.LogWarning("Player not found in the current room.");
+            Debug.LogWarning($"No HP information found for player with ID: {playerID}");
             
         }
         return 0;
