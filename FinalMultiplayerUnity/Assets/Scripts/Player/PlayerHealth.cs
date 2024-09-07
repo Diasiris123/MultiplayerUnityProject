@@ -39,8 +39,6 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
     {
         UpdateHealthBar();
     }
-
-
     
     private void UpdateHealthBar()
     {
@@ -51,9 +49,6 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
             // face local player camera
             healthBar.transform.LookAt(healthBar.transform.position + playerCamera.rotation * Vector3.forward, playerCamera.rotation * Vector3.up);
         }
-        
-        
-        
         
     }
 
@@ -110,7 +105,10 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
         }
     }
         
-    
+    private void SetPlayerEliminationOrder(int eliminatedPlayers)
+    {
+        photonView.Owner.SetCustomProperties(new ExitGames.Client.Photon.Hashtable { { "EliminationOrder", eliminatedPlayers } });
+    }
     
     private void CheckForWinner(int eliminatedPlayers)
     {
@@ -133,8 +131,21 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
     private void AnnounceWinner(string winnerName)
     {
         Debug.Log($"Winner: Player {winnerName} has won the game!");
+        GameOver();
     }
     
+    private void GameOver()
+    {
+        GameObject scoreboardCanvas = GameObject.Find("ScoreboardCanvas");
+        if (scoreboardCanvas != null)
+        {
+            scoreboardCanvas.SetActive(true);
+        }
+        
+        Time.timeScale = 0f;
+        
+        Debug.Log("Game Over! Now Displaying Scoreboard");
+    }
 
     public void Heal(float amount)
     {
