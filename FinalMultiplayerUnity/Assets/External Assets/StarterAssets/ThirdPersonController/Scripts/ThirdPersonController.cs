@@ -129,7 +129,7 @@ namespace StarterAssets
 
         private void Awake()
         {
-            if(!photonView.IsMine)
+            if(!photonView.AmOwner)
                 return;
             
             // get a reference to our main camera
@@ -142,8 +142,7 @@ namespace StarterAssets
         private void Start()
         {
             
-            Debug.Log("photon isMine " + photonView.IsMine);
-            if(!photonView.IsMine)
+            if(!photonView.AmOwner)
                 return;
             
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
@@ -166,7 +165,7 @@ namespace StarterAssets
 
         private void Update()
         {
-            if(!photonView.IsMine)
+            if(!photonView.AmOwner)
                 return;
             
             _hasAnimator = TryGetComponent(out _animator);

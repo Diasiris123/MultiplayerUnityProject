@@ -38,13 +38,13 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
     {
         _mainCam = Camera.main;
         
-        if(photonView.IsMine)
+        if(photonView.AmOwner)
             playerInput.enabled = true;
     }
 
     private void Update()
     {
-        if (!photonView.IsMine)
+        if (!photonView.AmOwner)
             return;
         
         SwitchToAimCamera();
