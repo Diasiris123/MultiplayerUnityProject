@@ -3,15 +3,12 @@ using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerHealth : MonoBehaviourPunCallbacks
+public class AIHealth : MonoBehaviourPunCallbacks
 {
     private const string TAKE_DAMAGE_RPC = nameof(TakeDamage);
     private const string ELIMINATE_RPC = nameof(NotifyPlayersOfElimination);
     
     [SerializeField] private Slider healthBar;
-    [SerializeField] private Slider screenHealthBar;
-
-    private Slider ChosenSlider;
 
     private float maxHealth = 20f;
     private Transform playerCamera;
@@ -21,20 +18,7 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
 
     private void Start()
     {
-        currentHealth = maxHealth;
         playerCamera = Camera.main.transform;
-
-
-        if (photonView.AmOwner)
-        {
-            healthBar.gameObject.SetActive(false);
-            ChosenSlider = screenHealthBar;
-        }
-        else
-        {
-            screenHealthBar.gameObject.SetActive(false);
-            ChosenSlider = healthBar;
-        }
     }
 
     private void Update()
@@ -44,7 +28,7 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
     
     private void UpdateHealthBar()
     {
-        ChosenSlider.value = currentHealth / maxHealth;
+        healthBar.value = currentHealth / maxHealth;
         
         if (healthBar != null )
         {

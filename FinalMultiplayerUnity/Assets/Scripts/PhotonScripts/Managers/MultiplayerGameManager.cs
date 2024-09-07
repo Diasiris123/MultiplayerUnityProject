@@ -238,7 +238,9 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
             Debug.Log(otherPlayer.UserId);
             _lastLocation = PhotonViewManager.Instance.GetPlayerTransform(otherPlayer.ActorNumber).position;
             _lastRotation = PhotonViewManager.Instance.GetPlayerTransform(otherPlayer.ActorNumber).rotation;
-            _AIObject = PhotonNetwork.Instantiate(AI_PREFAB, _lastLocation, _lastRotation) ;
+            _AIObject = PhotonNetwork.Instantiate(AI_PREFAB, _lastLocation, _lastRotation);
+            Debug.Log(HealthManager.Instance.GetPlayerHP(otherPlayer.ActorNumber));
+            _AIObject.GetComponent<AIHealth>().currentHealth = HealthManager.Instance.GetPlayerHP(otherPlayer.ActorNumber);
         }
 
         if (otherPlayer.IsMasterClient)

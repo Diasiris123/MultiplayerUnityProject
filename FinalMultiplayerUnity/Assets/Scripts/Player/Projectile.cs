@@ -25,7 +25,10 @@ public class Projectile : MonoBehaviourPunCallbacks
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<PlayerHealth>().ApplyDamage(damage);
+            if(other.TryGetComponent<PlayerHealth>(out PlayerHealth ph))
+                other.GetComponent<PlayerHealth>().ApplyDamage(damage);
+            else
+                other.GetComponent<AIHealth>().ApplyDamage(damage);
         }
         
         Destroy(gameObject);
