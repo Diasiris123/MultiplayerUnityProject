@@ -1,4 +1,5 @@
-﻿using Photon.Pun;
+﻿using ExitGames.Client.Photon;
+using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
@@ -23,6 +24,8 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
     {
         currentHealth = maxHealth;
         playerCamera = Camera.main.transform;
+        
+        SavePlayerHP(currentHealth);
 
 
         if (photonView.AmOwner)
@@ -42,6 +45,12 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
         UpdateHealthBar();
     }
     
+    public void ApplyDamage(float damage)
+    {
+            photonView.RPC(TAKE_DAMAGE_RPC,RpcTarget.All, damage,photonView.Owner.NickName);
+            SavePlayerHP(currentHealth);
+    }
+    
     private void UpdateHealthBar()
     {
         ChosenSlider.value = currentHealth / maxHealth;
@@ -54,11 +63,16 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
         
     }
 
-
-    public void ApplyDamage(float damage)
+    private void SavePlayerHP(float currentHP)
     {
-        photonView.RPC(TAKE_DAMAGE_RPC,RpcTarget.All, damage,photonView.Owner.NickName);
+        Hashtable playerProperties = new Hashtable
+        {
+            { "HP", currentHP } 
+        };
+        
+        PhotonNetwork.LocalPlayer.SetCustomProperties(playerProperties);
     }
+    
     
     
     [PunRPC]

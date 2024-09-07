@@ -161,6 +161,25 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
             yield return new WaitForSeconds(10f);
         }
     }
+    
+    public float GetPlayerHP(int playerID)
+    {
+        if (PhotonNetwork.CurrentRoom.Players.TryGetValue(playerID, out Player player))
+        {
+            if (player.CustomProperties.TryGetValue("HP", out object hp))
+            {
+                Debug.Log("Player HP: " + hp);
+                return (float)hp;
+
+            }
+        }
+        else
+        {
+            Debug.LogWarning("Player not found in the current room.");
+            
+        }
+        return 0;
+    }
 
     #region RPCs
 
