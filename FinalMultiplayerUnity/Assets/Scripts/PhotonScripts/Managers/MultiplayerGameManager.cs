@@ -31,10 +31,11 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     private int _playersReady;
     private GameObject _playerObject;
     private BoostSpawnPoint _nextBoostSpawnPoint;
+    private string _roomName;
 
     private void Start()
     {
-        
+        _roomName = PhotonNetwork.CurrentRoom.Name;
         
         NotifyReadyToMasterClient();
         if (PhotonNetwork.IsMasterClient)
@@ -214,17 +215,25 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 
     #endregion
 
-    #region Disconnection
+    #region Disconnection & Regoin
 
-    public void OnPlayerDisconnected(Player player)
+    public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        Debug.Log("player has been disconnected");
-        if (player.IsMasterClient)
+        base.OnPlayerLeftRoom(otherPlayer);
+        Debug.Log($"player has been disconnected. Player Active/Inactive {otherPlayer.IsInactive}");
+        if (otherPlayer.IsMasterClient)
         {
             Debug.Log("player was the master client, changing master...");
             ChangeMasterClient();
         }
     }
+
+    public void RejoinRoom()
+    {
+        PhotonNetwork.Disconnect();
+        PhotonNetwork.RejoinRoom(_roomName);
+    }
+
 
     #endregion
 }

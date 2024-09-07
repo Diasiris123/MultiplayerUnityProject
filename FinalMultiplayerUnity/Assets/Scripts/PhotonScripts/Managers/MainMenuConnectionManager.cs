@@ -22,7 +22,8 @@ namespace PhotonScripts.Managers
             {
                 RoomOptions roomOptions = new RoomOptions()
                 {
-                    MaxPlayers = (int)ConnectionUIManager.Instance.roomMaxPlayersSlider.value
+                    MaxPlayers = (int)ConnectionUIManager.Instance.roomMaxPlayersSlider.value,
+                    PlayerTtl = 20000
                 };
                 PhotonNetwork.CreateRoom(ConnectionUIManager.Instance.roomNameIF.text, roomOptions, TypedLobby.Default);
             }
