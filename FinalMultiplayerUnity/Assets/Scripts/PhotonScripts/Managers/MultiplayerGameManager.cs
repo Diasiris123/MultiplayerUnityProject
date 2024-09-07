@@ -228,11 +228,18 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         }
     }
 
+    [ContextMenu("Disconnect")]
+    public void Disconnect()
+    {
+        PhotonNetwork.LeaveRoom();
+    }
+
+    [ContextMenu("Rejoin")]
     public void RejoinRoom()
     {
-        PhotonNetwork.Disconnect();
         PhotonNetwork.RejoinRoom(_roomName);
     }
+
 
 
     #endregion

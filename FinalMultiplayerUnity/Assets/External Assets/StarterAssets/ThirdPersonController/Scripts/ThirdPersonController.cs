@@ -192,7 +192,7 @@ namespace StarterAssets
 
         private void GroundedCheck()
         {
-            if (!photonView.IsMine)
+            if (!photonView.AmOwner)
                 return;
             
             
@@ -211,7 +211,7 @@ namespace StarterAssets
 
         private void CameraRotation()
         {
-            if (!photonView.IsMine)
+            if (!photonView.AmOwner)
                 return;
             
             
@@ -236,7 +236,7 @@ namespace StarterAssets
 
         private void Move()
         {
-            if (!photonView.IsMine)
+            if (!photonView.AmOwner)
                 return;
             
             
@@ -399,7 +399,7 @@ namespace StarterAssets
 
         private void OnFootstep(AnimationEvent animationEvent)
         {
-            if(!photonView.IsMine)
+            if(!photonView.AmOwner)
                 return;
             
             if (animationEvent.animatorClipInfo.weight > 0.5f)
@@ -414,7 +414,7 @@ namespace StarterAssets
 
         private void OnLand(AnimationEvent animationEvent)
         {
-            if(!photonView.IsMine)
+            if(!photonView.AmOwner)
                 return;
             
             if (animationEvent.animatorClipInfo.weight > 0.5f)

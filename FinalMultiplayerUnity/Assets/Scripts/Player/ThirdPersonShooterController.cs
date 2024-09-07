@@ -93,7 +93,7 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
 
     private void AimAtScreenCenter()
     {
-        if (!photonView.IsMine)
+        if (!photonView.AmOwner)
             return;
         
         Ray ray = _mainCam.ScreenPointToRay(_screenCenterPoint);
