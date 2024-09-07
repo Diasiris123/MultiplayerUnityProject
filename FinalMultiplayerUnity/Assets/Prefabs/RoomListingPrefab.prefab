@@ -176,7 +176,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 693.17, y: 135.2607}
+  m_SizeDelta: {x: 675.9346, y: 135.2607}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &861562562689156699
 CanvasRenderer:
@@ -256,11 +256,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 8564591695596565302, guid: 838132fe3ad4f4563817a15f2bbe9062, type: 3}
       propertyPath: m_Name
-      value: Btn_TextButton_Square02_White (1)
+      value: Btn_Join
       objectReference: {fileID: 0}
     - target: {fileID: 8564591695596565304, guid: 838132fe3ad4f4563817a15f2bbe9062, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8564591695596565304, guid: 838132fe3ad4f4563817a15f2bbe9062, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
@@ -348,7 +348,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8564591695596565305, guid: 838132fe3ad4f4563817a15f2bbe9062, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 243
+      value: 236.3
       objectReference: {fileID: 0}
     - target: {fileID: 8564591695596565305, guid: 838132fe3ad4f4563817a15f2bbe9062, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -569,7 +569,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 835916472771823086, guid: d71f7e8fdc4ca4926932fdb7712f4e95, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -342
+      value: -330.6
       objectReference: {fileID: 0}
     - target: {fileID: 835916472771823086, guid: d71f7e8fdc4ca4926932fdb7712f4e95, type: 3}
       propertyPath: m_AnchoredPosition.y

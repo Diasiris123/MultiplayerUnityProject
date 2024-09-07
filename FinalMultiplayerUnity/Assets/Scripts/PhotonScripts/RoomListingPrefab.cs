@@ -23,7 +23,6 @@ namespace PhotonScripts
             _roomPlayers = inRoomPlayers;
         
             InitVisualInfo();
-            joinRoomBtn.onClick.AddListener(JoinRoom);
         }
 
         public void UpdateRoomInfo( int roomPlayers)
