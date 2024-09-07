@@ -12,6 +12,8 @@ public class AI_Patrol : MonoBehaviourPunCallbacks
 
     public Transform centrePoint;
 
+    private float _animationBlend;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -19,8 +21,18 @@ public class AI_Patrol : MonoBehaviourPunCallbacks
 
     void Update()
     {
+        _animationBlend = Mathf.Lerp(_animationBlend, 2f, Time.deltaTime * 10f);
+        if (_animationBlend < 0.01f) _animationBlend = 0f;
+
+        if (agent.velocity.sqrMagnitude > 0f)
+        {
+            animator.SetFloat(Speed,_animationBlend);
+        }
+        else
+        {
+            animator.SetFloat(Speed, 0f);
+        }
         
-        animator.SetFloat(Speed, agent.velocity.magnitude);
         
         if (agent.remainingDistance <= agent.stoppingDistance) 
         {
