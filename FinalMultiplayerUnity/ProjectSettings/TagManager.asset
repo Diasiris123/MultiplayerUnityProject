@@ -7,6 +7,7 @@ TagManager:
   - CinemachineTarget
   - Projectile
   - AimCamera
+  - Lava
   layers:
   - Default
   - TransparentFX
