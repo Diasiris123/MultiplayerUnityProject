@@ -35,12 +35,16 @@ namespace CharacterSelection
 
         public void Ready()
         {
-            isReady = true;
-            readyBtn.interactable = false;
-
-            SetPlayerColor();
+            if (!isReady)
+            {
+                isReady = true;
+                readyBtn.interactable = false;
+                
+                SetPlayerColor();
+                            
+                NotifyReadyToMasterClient();
+            }
             
-            NotifyReadyToMasterClient();
         }
 
         private void SetPlayerColor()
