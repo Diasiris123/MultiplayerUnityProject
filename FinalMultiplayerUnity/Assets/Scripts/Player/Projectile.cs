@@ -6,6 +6,7 @@ public class Projectile : MonoBehaviourPunCallbacks
 {
     [SerializeField] Rigidbody rb;
     [SerializeField] float speed = 10f;
+    public float damage = 1f;
 
     private void Start()
     {
@@ -14,6 +15,11 @@ public class Projectile : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("Player"))
+        {
+            other.GetComponent<PlayerHealth>().ApplyDamage(damage);
+        }
+        
         Destroy(gameObject);
     }
 }

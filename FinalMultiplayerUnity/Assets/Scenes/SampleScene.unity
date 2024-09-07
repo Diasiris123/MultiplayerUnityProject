@@ -523,7 +523,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 113918652}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -567,7 +567,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 142929208}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1690,7 +1690,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 351639239}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MapLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2581,7 +2581,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 494427102}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7046,7 +7046,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1637489671}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7629,7 +7629,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1699562043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9897,7 +9897,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2071428324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
