@@ -9,6 +9,9 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
     private const string ELIMINATE_RPC = nameof(NotifyPlayersOfElimination);
     
     [SerializeField] private Slider healthBar;
+    [SerializeField] private Slider screenHealthBar;
+
+    private Slider ChosenSlider;
 
     private float maxHealth = 20f;
     private float currentHealth;
@@ -19,6 +22,17 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
     {
         currentHealth = maxHealth;
         playerCamera = Camera.main.transform;
+
+        if (photonView.AmOwner)
+        {
+            healthBar.gameObject.SetActive(false);
+            ChosenSlider = screenHealthBar;
+        }
+        else
+        {
+            screenHealthBar.gameObject.SetActive(false);
+            ChosenSlider = healthBar;
+        }
     }
 
     private void Update()
@@ -30,13 +44,17 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
     
     private void UpdateHealthBar()
     {
-        if (healthBar != null)
+        ChosenSlider.value = currentHealth / maxHealth;
+        
+        if (healthBar != null )
         {
-            healthBar.value = currentHealth / maxHealth;
-            
             // face local player camera
             healthBar.transform.LookAt(healthBar.transform.position + playerCamera.rotation * Vector3.forward, playerCamera.rotation * Vector3.up);
         }
+        
+        
+        
+        
     }
 
 
