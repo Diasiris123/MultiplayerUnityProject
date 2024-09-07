@@ -1,4 +1,5 @@
 using Photon.Pun;
+using PhotonScripts.Managers;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -45,14 +46,11 @@ namespace PhotonScripts
         
         public void JoinRoom()
         {
-            if (PhotonNetwork.IsConnectedAndReady)
-            {
-                PhotonNetwork.JoinRoom(roomNameText.text);
-            }
-            else
-            {
-                Debug.LogError("Not connected to Photon servers.");
-            }
+            Debug.Log("joining " + roomNameText.text);
+            ConnectionUIManager.Instance.ShowLoadingScreen();
+            PhotonNetwork.JoinRoom(roomNameText.text);
+            
+            
         }
     }
 }

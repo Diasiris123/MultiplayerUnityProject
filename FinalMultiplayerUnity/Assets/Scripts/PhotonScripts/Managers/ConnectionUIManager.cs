@@ -11,11 +11,15 @@ namespace PhotonScripts.Managers
     {
         public static ConnectionUIManager Instance;
         
+        [Header("loading Screen")]
+        [SerializeField] private GameObject loadingScreen;
+        
         [Header("Main Connection")]
         [SerializeField] private GameObject connectionPanel;
         
         [SerializeField] public TMP_InputField playerNameIF;
         [SerializeField] private Button connectBtn;
+        
        
         
         [Header("Room Connection")]
@@ -65,11 +69,17 @@ namespace PhotonScripts.Managers
             }
         }
 
+        public void ShowLoadingScreen()
+        {
+            SwitchUIScreen(UIScreen.Loading);
+        }
+
         private void SwitchUIScreen(UIScreen uiScreen)
         {
             connectionPanel.SetActive(false);
             chooseRoomPanel.SetActive(false);
             inRoomPanel.SetActive(false);
+            loadingScreen.SetActive(false);
             
             switch (uiScreen)
             {
@@ -86,6 +96,9 @@ namespace PhotonScripts.Managers
                         startGameBtn.gameObject.SetActive(false);
                     }
                     break;
+                case UIScreen.Loading:
+                    loadingScreen.SetActive(true);
+                    break;
             }
         }
 
@@ -94,6 +107,7 @@ namespace PhotonScripts.Managers
             Connect,
             ChooseRoom,
             InRoom,
+            Loading
         }
 
         #region Pun Callbacks
@@ -114,6 +128,18 @@ namespace PhotonScripts.Managers
         {
             base.OnJoinedRoom();
             SwitchUIScreen(uiScreen: UIScreen.InRoom);
+        }
+
+        public override void OnCreateRoomFailed(short returnCode, string message)
+        {
+            base.OnCreateRoomFailed(returnCode, message);
+            SwitchUIScreen(UIScreen.ChooseRoom);
+        }
+
+        public override void OnJoinRoomFailed(short returnCode, string message)
+        {
+            base.OnJoinRoomFailed(returnCode, message);
+            SwitchUIScreen(UIScreen.ChooseRoom);
         }
 
         public override void OnLeftRoom()

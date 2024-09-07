@@ -16,10 +16,7 @@ namespace PhotonScripts
 
         private void Awake()
         {
-            foreach (var room in roomListings)
-            {
-                RemoveRoomListing(room.Key);
-            }
+            
         }
 
         public override void OnRoomListUpdate(List<RoomInfo> roomList)

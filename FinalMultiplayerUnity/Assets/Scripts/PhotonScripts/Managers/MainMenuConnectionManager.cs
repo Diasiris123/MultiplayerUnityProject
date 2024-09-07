@@ -14,6 +14,7 @@ namespace PhotonScripts.Managers
             PhotonNetwork.NickName = ConnectionUIManager.Instance.playerNameIF.text;
             PhotonNetwork.ConnectUsingSettings();
             PhotonNetwork.AutomaticallySyncScene = true;
+            ConnectionUIManager.Instance.ShowLoadingScreen();
         }
         
         public void CreateRoom()
@@ -26,6 +27,7 @@ namespace PhotonScripts.Managers
                     PlayerTtl = 20000
                 };
                 PhotonNetwork.CreateRoom(ConnectionUIManager.Instance.roomNameIF.text, roomOptions, TypedLobby.Default);
+                ConnectionUIManager.Instance.ShowLoadingScreen();
             }
             else
             {
@@ -43,6 +45,7 @@ namespace PhotonScripts.Managers
             if (PhotonNetwork.IsMasterClient)
             {
                 PhotonNetwork.LoadLevel(GAME_SCENE_NAME);
+                ConnectionUIManager.Instance.ShowLoadingScreen();
             }
         }
 
