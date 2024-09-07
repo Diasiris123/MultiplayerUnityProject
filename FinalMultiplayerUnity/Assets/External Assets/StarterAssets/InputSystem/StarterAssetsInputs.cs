@@ -26,7 +26,7 @@ namespace StarterAssets
 
 		private void Update()
 		{
-			Debug.Log("Input System " + photonView.IsMine);
+			//Debug.Log("Input System " + photonView.IsMine);
 		}
 		
 		public void OnMove(InputValue value)
@@ -34,7 +34,7 @@ namespace StarterAssets
 			if (photonView.IsMine)
 			{
 				MoveInput(value.Get<Vector2>());
-				Debug.Log("Move input for local player: " + PhotonNetwork.NickName + " | Value: " + value.Get<Vector2>());
+				//Debug.Log("Move input for local player: " + PhotonNetwork.NickName + " | Value: " + value.Get<Vector2>());
 			}
 		}
 
@@ -43,7 +43,7 @@ namespace StarterAssets
 			if (photonView.IsMine && cursorInputForLook)
 			{
 				LookInput(value.Get<Vector2>());
-				Debug.Log("Look input for local player: " + PhotonNetwork.NickName + " | Value: " + value.Get<Vector2>());
+				//Debug.Log("Look input for local player: " + PhotonNetwork.NickName + " | Value: " + value.Get<Vector2>());
 			}
 		}
 
@@ -52,7 +52,7 @@ namespace StarterAssets
 			if (photonView.IsMine)
 			{
 				JumpInput(value.isPressed);
-				Debug.Log("Jump input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
+				//Debug.Log("Jump input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
 			}
 		}
 
@@ -61,7 +61,7 @@ namespace StarterAssets
 			if (photonView.IsMine)
 			{
 				SprintInput(value.isPressed);
-				Debug.Log("Sprint input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
+				//Debug.Log("Sprint input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
 			}
 		}
 
@@ -70,7 +70,7 @@ namespace StarterAssets
 			if (photonView.IsMine)
 			{
 				AimInput(value.isPressed);
-				Debug.Log("Aim input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
+				//Debug.Log("Aim input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
 			}
 		}
 		
@@ -79,7 +79,7 @@ namespace StarterAssets
 			if (photonView.IsMine)
 			{
 				ShootInput(value.isPressed);
-				Debug.Log("Shoot input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
+				//Debug.Log("Shoot input for local player: " + PhotonNetwork.NickName + " | Value: " + value.isPressed);
 			}
 		}
 		
