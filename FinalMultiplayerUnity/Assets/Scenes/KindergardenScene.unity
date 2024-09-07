@@ -1315,7 +1315,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 113918652}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1683,7 +1683,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 142929208}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2814,7 +2814,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 223948082}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3290,7 +3290,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 253924868}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StairsForArena1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3765,7 +3765,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 316793782}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4457,7 +4457,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 351639239}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: MapLayout
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4492,7 +4492,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 365626345}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4968,7 +4968,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 387685547}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StairsForArena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7184,7 +7184,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 494427102}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11838,7 +11838,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 829739402}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15059,7 +15059,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1026227248}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15747,7 +15747,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1060536506}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17735,7 +17735,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1181340652}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StairsForArena3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17778,7 +17778,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1182502458}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19657,7 +19657,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1281970562}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -21407,7 +21407,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1370212887}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: StairsForArena2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -23610,7 +23610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1526660600}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Arena
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24295,7 +24295,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1564280371}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24771,7 +24771,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1575388169}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25246,7 +25246,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1593645213}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: FirstArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25511,7 +25511,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1614144788}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ThirdArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -25775,7 +25775,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1637489671}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -27438,7 +27438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1699562043}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30489,6 +30489,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1868937761}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1880298888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2737088826175306202, guid: 63d546a078a4c164dbcd6360c337139c, type: 3}
+  m_PrefabInstance: {fileID: 204768112148039792}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1882483687
 GameObject:
   m_ObjectHideFlags: 0
@@ -30822,7 +30833,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1886964823}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30866,7 +30877,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1906999724}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -33716,7 +33727,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2071428324}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Stairs2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34948,7 +34959,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2140398313}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SecondArea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -35245,6 +35256,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -4874967222669523826, guid: 425758bc84b50c2458c56dd886ac23d0, type: 3}
+      propertyPath: aimCamera
+      value: 
+      objectReference: {fileID: 1880298888}
     - target: {fileID: -2828163460925138878, guid: 425758bc84b50c2458c56dd886ac23d0, type: 3}
       propertyPath: sceneViewId
       value: 1
