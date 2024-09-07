@@ -5,6 +5,8 @@ using Photon.Realtime;
 
 public class AI_Patrol : MonoBehaviourPunCallbacks
 {
+    private static readonly int Speed = Animator.StringToHash("Speed");
+    public Animator animator;
     public NavMeshAgent agent;
     public float range;
 
@@ -17,6 +19,9 @@ public class AI_Patrol : MonoBehaviourPunCallbacks
 
     void Update()
     {
+        
+        animator.SetFloat(Speed, agent.velocity.magnitude);
+        
         if (agent.remainingDistance <= agent.stoppingDistance) 
         {
             Vector3 point;
