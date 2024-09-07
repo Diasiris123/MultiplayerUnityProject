@@ -7,10 +7,14 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using Photon.Realtime;
 using System.Collections;
+using UnityEngine.UIElements;
+using Photon.Pun.UtilityScripts;
+using Unity.VisualScripting;
 
 public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 {
     private const string PLAYER_PREFAB = "Player/PlayerArmature";
+    private const string AI_PREFAB = "AI/AIPrefab";
     private const string BOOST_PREFAP_NAME = "World/BoostPrefab";
 
     private const string ClientIsReady_RPC = nameof(ClientIsReady);
@@ -25,18 +29,22 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     [SerializeField] private CinemachineCamera cinemachineCamMain;
     [SerializeField] private CinemachineCamera cinemachineCamAim;
     [SerializeField] private GameObject cameraFollowTarget;
-    
+
     private ThirdPersonShooterController _myShooterController;
 
     private int _playersReady;
     private GameObject _playerObject;
+    private GameObject _AIObject;
     private BoostSpawnPoint _nextBoostSpawnPoint;
     private string _roomName;
+    private Vector3 _lastLocation;
+    private Quaternion _lastRotation;
+
 
     private void Start()
     {
         _roomName = PhotonNetwork.CurrentRoom.Name;
-        
+
         NotifyReadyToMasterClient();
         if (PhotonNetwork.IsMasterClient)
         {
@@ -58,8 +66,9 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 
         if (_playerObject.GetPhotonView().IsMine)
         {
+
             _playerObject.transform.LookAt(Vector3.zero);
-            
+
 
             _myShooterController = _playerObject.GetComponent<ThirdPersonShooterController>();
             cameraFollowTarget = _myShooterController.cameraFollowTarget;
@@ -219,8 +228,19 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
+        if(!PhotonNetwork.IsMasterClient)
+            return;
         base.OnPlayerLeftRoom(otherPlayer);
         Debug.Log($"player has been disconnected. Player Active/Inactive {otherPlayer.IsInactive}");
+
+        if (!otherPlayer.IsInactive)
+        {
+            Debug.Log(otherPlayer.UserId);
+            _lastLocation = PhotonViewManager.Instance.GetPlayerTransform(otherPlayer.ActorNumber).position;
+            _lastRotation = PhotonViewManager.Instance.GetPlayerTransform(otherPlayer.ActorNumber).rotation;
+            _AIObject = PhotonNetwork.Instantiate(AI_PREFAB, _lastLocation, _lastRotation) ;
+        }
+
         if (otherPlayer.IsMasterClient)
         {
             Debug.Log("player was the master client, changing master...");
