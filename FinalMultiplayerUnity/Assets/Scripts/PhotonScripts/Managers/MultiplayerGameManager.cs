@@ -32,6 +32,7 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     [SerializeField] private CinemachineCamera cinemachineCamAim;
     [SerializeField] private GameObject cameraFollowTarget;
 
+    private ThirdPersonController _myThirdPersonController;
     private ThirdPersonShooterController _myShooterController;
 
     private int _playersReady;
@@ -71,13 +72,22 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 
             _playerObject.transform.LookAt(Vector3.zero);
 
-
+            
+            _myThirdPersonController = _playerObject.GetComponent<ThirdPersonController>();
             _myShooterController = _playerObject.GetComponent<ThirdPersonShooterController>();
+            
+            // setup cinemachine
             cameraFollowTarget = _myShooterController.cameraFollowTarget;
 
             cinemachineCamMain.Follow = cameraFollowTarget.transform;
             cinemachineCamAim.Follow = cameraFollowTarget.transform;
             _myShooterController.aimCamera = cinemachineCamAim;
+            
+            //disable controlls until all players are ready
+            _myShooterController.enabled = false;
+            _myThirdPersonController.enabled = false;
+            
+            
         }
     }
 
@@ -232,6 +242,10 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
     private void GameStarted()
     {
         Debug.Log("Game started");
+        
+        //give control to players
+        _myShooterController.enabled = true;
+        _myThirdPersonController.enabled = true;
         
     }
 
