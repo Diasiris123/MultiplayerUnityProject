@@ -31916,7 +31916,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   container: {fileID: 1891859879}
   scoreboardItemPrefab: {fileID: 6364280527425537568, guid: 1abcd225ced8fa64ca564de768366e42, type: 3}
-  ScoreboardCanvas: {fileID: 0}
+  ScoreboardCanvas: {fileID: 607541569}
 --- !u!114 &1891859881
 MonoBehaviour:
   m_ObjectHideFlags: 0
