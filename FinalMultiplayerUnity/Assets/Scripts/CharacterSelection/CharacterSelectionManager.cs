@@ -1,4 +1,5 @@
 ﻿using System;
+using ExitGames.Client.Photon;
 using Photon.Pun;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,6 +58,14 @@ namespace CharacterSelection
                 { "PlayerColor", colorJson }
             };
             PhotonNetwork.LocalPlayer.SetCustomProperties(props);
+            
+            // set in room properties for AI
+            Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
+            string colorKey = "PlayerColor_" + PhotonNetwork.LocalPlayer.ActorNumber;
+            
+            roomProps[colorKey] = colorJson;
+            
+            PhotonNetwork.CurrentRoom.SetCustomProperties(roomProps);
         }
 
         private void NotifyReadyToMasterClient()
@@ -79,5 +88,6 @@ namespace CharacterSelection
                 }
             }
         }
+        
     }
 }

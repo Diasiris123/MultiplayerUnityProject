@@ -1400,6 +1400,7 @@ GameObject:
   - component: {fileID: -6307198109532317167}
   - component: {fileID: 8695874544902742094}
   - component: {fileID: -6950415210716828984}
+  - component: {fileID: 4543928089504188445}
   m_Layer: 8
   m_Name: AIPrefab
   m_TagString: Player
@@ -1631,6 +1632,8 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: -2886454365553055732}
   - {fileID: -2571522013123956085}
+  - {fileID: 0}
+  - {fileID: 4543928089504188445}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1721,6 +1724,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 7662405967499554193}
   agent: {fileID: -6307198109532317167}
+  renderer: {fileID: 0}
   range: 50
   centrePoint: {fileID: 5236646079932179022}
 --- !u!114 &-6950415210716828984
@@ -1737,6 +1741,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 6665402427275467659}
   currentHealth: 0
+--- !u!114 &4543928089504188445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5334517184324768926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78058479cce546969f6c8381fb05f342, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerRenderer: {fileID: 626981074271629616}
 --- !u!1 &5399681587262623532
 GameObject:
   m_ObjectHideFlags: 0

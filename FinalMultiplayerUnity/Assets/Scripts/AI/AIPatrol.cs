@@ -3,11 +3,13 @@ using UnityEngine.AI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class AI_Patrol : MonoBehaviourPunCallbacks
+public class AIPatrol : MonoBehaviourPunCallbacks
 {
     private static readonly int Speed = Animator.StringToHash("Speed");
+    private static readonly int MotionSpeed = Animator.StringToHash("MotionSpeed");
     public Animator animator;
     public NavMeshAgent agent;
+    public Renderer renderer;
     public float range;
 
     public Transform centrePoint;
@@ -17,6 +19,7 @@ public class AI_Patrol : MonoBehaviourPunCallbacks
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        animator.fireEvents = false;
     }
 
     void Update()
@@ -27,10 +30,13 @@ public class AI_Patrol : MonoBehaviourPunCallbacks
         if (agent.velocity.sqrMagnitude > 0f)
         {
             animator.SetFloat(Speed,_animationBlend);
+            animator.SetFloat(MotionSpeed,1);
         }
         else
         {
             animator.SetFloat(Speed, 0f);
+            animator.SetFloat(MotionSpeed,0);
+
         }
         
         
@@ -41,6 +47,14 @@ public class AI_Patrol : MonoBehaviourPunCallbacks
             {
                 agent.SetDestination(point);
             }
+        }
+    }
+
+    public void ChangeColor(Color color)
+    {
+        foreach (var material in renderer.materials)
+        {
+            material.color = color;
         }
     }
 
@@ -58,4 +72,6 @@ public class AI_Patrol : MonoBehaviourPunCallbacks
         result = Vector3.zero;
         return false;
     }
+    
+    
 }

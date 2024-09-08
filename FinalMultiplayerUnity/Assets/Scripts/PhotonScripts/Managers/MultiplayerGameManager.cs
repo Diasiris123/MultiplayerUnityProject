@@ -7,9 +7,11 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 using Photon.Realtime;
 using System.Collections;
+using CharacterSelection;
 using UnityEngine.UIElements;
 using Photon.Pun.UtilityScripts;
 using Unity.VisualScripting;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class MultiplayerGameManager : MonoBehaviourPunCallbacks
 {
@@ -162,7 +164,7 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
         }
     }
     
-    public float GetPlayerHP(int playerID)
+    private float GetPlayerHP(int playerID)
     {
         if (PhotonNetwork.CurrentRoom.CustomProperties.TryGetValue("HP_" + playerID, out object hp))
         {
@@ -176,6 +178,22 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
             
         }
         return 0;
+    }
+    
+    private Color GetPlayerColor(Player player)
+    {
+        Hashtable roomProps = PhotonNetwork.CurrentRoom.CustomProperties;
+        string colorKey = "PlayerColor_" + player.ActorNumber;
+        
+        if (roomProps.ContainsKey(colorKey))
+        {
+            string colorJson = roomProps[colorKey] as string;
+            Color playerColor = JsonUtility.FromJson<Color>(colorJson);
+
+            return playerColor;
+        }
+        
+        return Color.black;
     }
 
     #region RPCs
@@ -255,8 +273,8 @@ public class MultiplayerGameManager : MonoBehaviourPunCallbacks
             _lastLocation = PhotonViewManager.Instance.GetPlayerTransform(otherPlayer.ActorNumber).position;
             _lastRotation = PhotonViewManager.Instance.GetPlayerTransform(otherPlayer.ActorNumber).rotation;
             _AIObject = PhotonNetwork.Instantiate(AI_PREFAB, _lastLocation, _lastRotation);
-            Debug.Log(HealthManager.Instance.GetPlayerHP(otherPlayer.ActorNumber));
-            _AIObject.GetComponent<AIHealth>().currentHealth = HealthManager.Instance.GetPlayerHP(otherPlayer.ActorNumber);
+            _AIObject.GetComponent<AIHealth>().currentHealth = GetPlayerHP(otherPlayer.ActorNumber);
+            _AIObject.GetComponent<AIColorSetter>().SetColor(GetPlayerColor(otherPlayer));
         }
 
         if (otherPlayer.IsMasterClient)
