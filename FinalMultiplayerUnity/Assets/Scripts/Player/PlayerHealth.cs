@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
 {
     private const string TAKE_DAMAGE_RPC = nameof(TakeDamage);
     private const string ELIMINATE_RPC = nameof(NotifyPlayersOfElimination);
+    private const string HEAL_RPC = nameof(Heal);
     
     [SerializeField] private Slider healthBar;
     [SerializeField] private Slider screenHealthBar;
@@ -89,6 +90,13 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
             
     }
 
+    
+    private void HealHP(float amount)
+    {
+        photonView.RPC(HEAL_RPC,RpcTarget.All, amount);
+        SavePlayerHP(PhotonNetwork.LocalPlayer.ActorNumber,currentHealth);
+    }
+
     private void HandlePLayerDeath(string playerName)
     {
         if(playerName != PhotonNetwork.LocalPlayer.NickName)
@@ -146,6 +154,16 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
         }
     }
     
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Boost"))
+        {
+            other.gameObject.GetComponent<Boost>().Collect();
+            HealHP(10f);
+        }
+    }
+
+    
     [PunRPC]
     private void AnnounceWinner(string winnerName)
     {
@@ -166,6 +184,7 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
         Debug.Log("Game Over! Now Displaying Scoreboard");
     }
 
+    [PunRPC]
     public void Heal(float amount)
     {
         currentHealth += amount;

@@ -9,6 +9,7 @@ TagManager:
   - AimCamera
   - Lava
   - AI
+  - Boost
   layers:
   - Default
   - TransparentFX

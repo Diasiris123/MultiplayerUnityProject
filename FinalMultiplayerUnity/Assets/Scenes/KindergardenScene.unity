@@ -35664,21 +35664,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 425758bc84b50c2458c56dd886ac23d0, type: 3}
---- !u!4 &2256727180023449064
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7896559799492321501}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 105, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &3663214430173216690
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -35798,22 +35783,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4284d17fcdff8cf479ecbd4f0541025f, type: 3}
---- !u!1 &7896559799492321501
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2256727180023449064}
-  m_Layer: 0
-  m_Name: NestedParentArmature_Unpack
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -35825,7 +35794,6 @@ SceneRoots:
   - {fileID: 204768112148039792}
   - {fileID: 1898593176315100856}
   - {fileID: 3663214430173216690}
-  - {fileID: 2256727180023449064}
   - {fileID: 351639239}
   - {fileID: 1847632772}
   - {fileID: 1307035450}
