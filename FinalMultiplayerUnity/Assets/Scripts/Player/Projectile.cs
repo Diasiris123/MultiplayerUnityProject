@@ -23,14 +23,21 @@ public class Projectile : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (photonView.IsMine)
         {
-            if(other.TryGetComponent<PlayerHealth>(out PlayerHealth ph))
-                other.GetComponent<PlayerHealth>().ApplyDamage(damage);
-            else
-                other.GetComponent<AIHealth>().ApplyDamage(damage);
+            if (other.CompareTag("Player"))
+            {
+                if(other.TryGetComponent<PlayerHealth>(out PlayerHealth ph))
+                    other.GetComponent<PlayerHealth>().ApplyDamage(damage);
+                else
+                    other.GetComponent<AIHealth>().ApplyDamage(damage);
+            }
+            
+            PhotonNetwork.Destroy(gameObject);
+                    
         }
         
-        Destroy(gameObject);
+        
+        gameObject.SetActive(false);
     }
 }

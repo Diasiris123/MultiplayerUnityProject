@@ -113,12 +113,16 @@ public class ThirdPersonShooterController : MonoBehaviourPunCallbacks
     {
         if (starterAssetsInputs.shoot && starterAssetsInputs.aim)
         {
+            if(photonView.AmOwner)
+            {
             
                 Vector3 aimDir = (_mouseToWorldPos - projectileSpawnPoint.position).normalized;
                 PhotonNetwork.Instantiate(PROJECTILE_PREFAB_PATH, projectileSpawnPoint.position,
                     Quaternion.LookRotation(aimDir, Vector3.up), 0);
 
-                starterAssetsInputs.shoot = false;
+                
+            }
+            starterAssetsInputs.shoot = false;
         }
         
         
