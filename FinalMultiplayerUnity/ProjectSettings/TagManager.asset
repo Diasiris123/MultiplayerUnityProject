@@ -10,6 +10,7 @@ TagManager:
   - Lava
   - AI
   - Boost
+  - ScoreboardCanvas
   layers:
   - Default
   - TransparentFX

@@ -1,8 +1,9 @@
-﻿using ExitGames.Client.Photon;
+﻿using System.Collections;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.UI;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 public class PlayerHealth : MonoBehaviourPunCallbacks
 {
@@ -173,15 +174,14 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
     
     private void GameOver()
     {
-        GameObject scoreboardCanvas = GameObject.Find("ScoreboardCanvas");
+        GameObject scoreboardCanvas = GameObject.FindGameObjectWithTag("ScoreboardCanvas");
         if (scoreboardCanvas != null)
         {
             scoreboardCanvas.SetActive(true);
         }
         
-        Time.timeScale = 0f;
-        
         Debug.Log("Game Over! Now Displaying Scoreboard");
+        StartCoroutine(DisconnectAfterDelay(10f));
     }
 
     [PunRPC]
@@ -190,5 +190,11 @@ public class PlayerHealth : MonoBehaviourPunCallbacks
         currentHealth += amount;
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;
+    }
+    
+    private IEnumerator DisconnectAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        PhotonNetwork.Disconnect();
     }
 }
